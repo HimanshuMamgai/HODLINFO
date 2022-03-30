@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hodlinfo</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 id="main-heading">HODLINFO</h1>
+        <p><span id="pb">Powered By </span>Finstreet</p>
+    </header>
+    <section id="options">
+        <select name="inr" id="inr">
+            <option value="inr">INR</option>
+        </select>
+        <select name="crypto" id="crypto">
+            <option value="btc" selected>BTC</option>
+            <option value="eth">ETH</option>
+            <option value="usdt">USDT</option>
+            <option value="xrp">XRP</option>
+            <option value="trx">TRX</option>
+            <option value="dash">DASH</option>
+            <option value="zec">ZEC</option>
+            <option value="xem">XEM</option>
+            <option value="iost">IOST</option>
+            <option value="win">WIN</option>
+            <option value="btt">BTT</option>
+            <option value="wrx">WRX</option>
+        </select>
+    </section>
+    <section>
+        <div class="table-container">
+            <div class="table">
+                <div class="table-headings">
+                    <span class="heading">#</span>
+                    <span class="heading">name</span>
+                    <span class="heading">Last</span>
+                    <span class="heading">Buy / Sell Price</span>
+                    <span class="heading">volume</span>
+                    <span class="heading">base_unit</span>
+                </div>
+                <% foundCrypto.forEach((data, index) => { %> 
+                <div class="table-data-row">
+                    <span class="table-data"><%= index+1 %></span>
+                    <span class="table-data"><%= data.name %></span>
+                    <span class="table-data">₹ <%= data.last %></span>
+                    <span class="table-data">₹ <%= data.buy %> / ₹ <%= data.Sell %></span>
+                    <span class="table-data">₹ <%= data.volume %></span>
+                    <span class="table-data"><%= data.base_unit %></span>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
