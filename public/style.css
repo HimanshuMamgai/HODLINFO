@@ -7,6 +7,11 @@ body {
     background-color: #191d28;
 }
 
+.main-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 header {
     text-align: center;
     color: #61A4BC;
@@ -16,6 +21,11 @@ header {
     font-size: 2.7rem;
     margin-bottom: 0;
     font-weight: 400;
+}
+
+#com {
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 p {

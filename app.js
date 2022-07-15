@@ -1,16 +1,20 @@
 import express from "express";
 import fetch from "node-fetch";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
-
-app.use(express.static("public"));
 
 app.use(express.urlencoded({extended: true}));
 
 app.set("view engine", "ejs");
 
-mongoose.connect("mongodb+srv://admin-himanshu:Test123@cluster0.j2qen.mongodb.net/hodlinfoDB?retryWrites=true&w=majority");
+app.use(express.static("public"));
+
+const DB = process.env.DB_URL;
+
+mongoose.connect(DB, {useNewUrlParser: true});
 
 const cryptoSchema = new mongoose.Schema({
     name: String,
@@ -23,7 +27,7 @@ const cryptoSchema = new mongoose.Schema({
 
 const Crypto = mongoose.model("Crypto", cryptoSchema);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
 
     fetch("https://api.wazirx.com/api/v2/tickers")
         .then(response => response.json())
@@ -56,6 +60,8 @@ app.get("/", (req, res) => {
         .catch(err => console.log(err.message));
 });
 
-app.listen(3000, () => {
-    console.log(`Server is running on port 3000`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
